@@ -104,6 +104,8 @@ def identifying_and_treating_outlier(df,col,remove_or_fill_with_quartile):
     upper_fence=q3+1.5*(iqr)
     print('Lower Fence;', lower_fence)
     print('Upper Fence:', upper_fence)
+    print('Total number of outliers are left:', df[df[col] > upper_fence].shape[0])
+
     if remove_or_fill_with_quartile=="drop":
         df.drop(df.loc[df[col]<lower_fence].index,inplace=True)
         df.drop(df.loc[df[col]>upper_fence].index,inplace=True)     
